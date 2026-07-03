@@ -9,38 +9,148 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProduzioneRouteImport } from './routes/produzione'
+import { Route as MagazzinoRouteImport } from './routes/magazzino'
+import { Route as AnagraficaRouteImport } from './routes/anagrafica'
+import { Route as AmministrazioneRouteImport } from './routes/amministrazione'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommesseIndexRouteImport } from './routes/commesse.index'
+import { Route as CommesseIdRouteImport } from './routes/commesse.$id'
 
+const ProduzioneRoute = ProduzioneRouteImport.update({
+  id: '/produzione',
+  path: '/produzione',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagazzinoRoute = MagazzinoRouteImport.update({
+  id: '/magazzino',
+  path: '/magazzino',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnagraficaRoute = AnagraficaRouteImport.update({
+  id: '/anagrafica',
+  path: '/anagrafica',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmministrazioneRoute = AmministrazioneRouteImport.update({
+  id: '/amministrazione',
+  path: '/amministrazione',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommesseIndexRoute = CommesseIndexRouteImport.update({
+  id: '/commesse/',
+  path: '/commesse/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommesseIdRoute = CommesseIdRouteImport.update({
+  id: '/commesse/$id',
+  path: '/commesse/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/amministrazione': typeof AmministrazioneRoute
+  '/anagrafica': typeof AnagraficaRoute
+  '/magazzino': typeof MagazzinoRoute
+  '/produzione': typeof ProduzioneRoute
+  '/commesse/$id': typeof CommesseIdRoute
+  '/commesse/': typeof CommesseIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/amministrazione': typeof AmministrazioneRoute
+  '/anagrafica': typeof AnagraficaRoute
+  '/magazzino': typeof MagazzinoRoute
+  '/produzione': typeof ProduzioneRoute
+  '/commesse/$id': typeof CommesseIdRoute
+  '/commesse': typeof CommesseIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/amministrazione': typeof AmministrazioneRoute
+  '/anagrafica': typeof AnagraficaRoute
+  '/magazzino': typeof MagazzinoRoute
+  '/produzione': typeof ProduzioneRoute
+  '/commesse/$id': typeof CommesseIdRoute
+  '/commesse/': typeof CommesseIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/amministrazione'
+    | '/anagrafica'
+    | '/magazzino'
+    | '/produzione'
+    | '/commesse/$id'
+    | '/commesse/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/amministrazione'
+    | '/anagrafica'
+    | '/magazzino'
+    | '/produzione'
+    | '/commesse/$id'
+    | '/commesse'
+  id:
+    | '__root__'
+    | '/'
+    | '/amministrazione'
+    | '/anagrafica'
+    | '/magazzino'
+    | '/produzione'
+    | '/commesse/$id'
+    | '/commesse/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AmministrazioneRoute: typeof AmministrazioneRoute
+  AnagraficaRoute: typeof AnagraficaRoute
+  MagazzinoRoute: typeof MagazzinoRoute
+  ProduzioneRoute: typeof ProduzioneRoute
+  CommesseIdRoute: typeof CommesseIdRoute
+  CommesseIndexRoute: typeof CommesseIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/produzione': {
+      id: '/produzione'
+      path: '/produzione'
+      fullPath: '/produzione'
+      preLoaderRoute: typeof ProduzioneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magazzino': {
+      id: '/magazzino'
+      path: '/magazzino'
+      fullPath: '/magazzino'
+      preLoaderRoute: typeof MagazzinoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anagrafica': {
+      id: '/anagrafica'
+      path: '/anagrafica'
+      fullPath: '/anagrafica'
+      preLoaderRoute: typeof AnagraficaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/amministrazione': {
+      id: '/amministrazione'
+      path: '/amministrazione'
+      fullPath: '/amministrazione'
+      preLoaderRoute: typeof AmministrazioneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +158,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/commesse/': {
+      id: '/commesse/'
+      path: '/commesse'
+      fullPath: '/commesse/'
+      preLoaderRoute: typeof CommesseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commesse/$id': {
+      id: '/commesse/$id'
+      path: '/commesse/$id'
+      fullPath: '/commesse/$id'
+      preLoaderRoute: typeof CommesseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AmministrazioneRoute: AmministrazioneRoute,
+  AnagraficaRoute: AnagraficaRoute,
+  MagazzinoRoute: MagazzinoRoute,
+  ProduzioneRoute: ProduzioneRoute,
+  CommesseIdRoute: CommesseIdRoute,
+  CommesseIndexRoute: CommesseIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
