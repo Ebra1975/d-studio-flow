@@ -13,6 +13,14 @@ export type Referente = {
   gestisceAmministrazione: boolean;
 };
 
+export type PrezzoPersonalizzato = {
+  id: string;
+  materiale: string;
+  prezzo: number;
+  validoDal: string; // dd/mm/yyyy
+  validoAl?: string;
+};
+
 export type Cliente = {
   id: string;
   denominazione: string;
@@ -21,6 +29,14 @@ export type Cliente = {
   codiceFiscale?: string;
   indirizzo: string;
   referenti: Referente[];
+  listino?: PrezzoPersonalizzato[];
+};
+
+export type PrezzoLavorazione = {
+  id: string;
+  descrizione: string;
+  prezzo?: number;
+  unita: string; // "a pezzo", "al kg", "forfait"
 };
 
 export type Fornitore = {
@@ -29,7 +45,9 @@ export type Fornitore = {
   partitaIva: string;
   indirizzo: string;
   referenti: Referente[];
+  lavorazioni?: PrezzoLavorazione[];
 };
+
 
 export type StatoCommessa =
   | "preventivo inviato"
@@ -170,7 +188,16 @@ export const clienti: Cliente[] = [
         gestisceAmministrazione: false,
       },
     ],
+    listino: [
+      {
+        id: "pp-001",
+        materiale: "PLA Nero",
+        prezzo: 18.5,
+        validoDal: "01/01/2026",
+      },
+    ],
   },
+
   {
     id: "cli-002",
     denominazione: "Cliente di Prova SRL",
@@ -235,7 +262,28 @@ export const fornitori: Fornitore[] = [
     indirizzo: "Corso Francia 100, 10143 Torino (TO)",
     referenti: [],
   },
+  {
+    id: "for-003",
+    denominazione: "Carrozzeria Rossi",
+    partitaIva: "33445566778",
+    indirizzo: "Via Meccanici 5, 90100 Palermo (PA)",
+    referenti: [],
+    lavorazioni: [
+      {
+        id: "lav-001",
+        descrizione: "Verniciatura UV-resistant",
+        prezzo: 15.0,
+        unita: "a pezzo",
+      },
+      {
+        id: "lav-002",
+        descrizione: "Saldatura struttura metallica",
+        unita: "forfait",
+      },
+    ],
+  },
 ];
+
 
 // ============================================================
 // COMMESSE
