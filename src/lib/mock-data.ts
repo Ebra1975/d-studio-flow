@@ -13,6 +13,14 @@ export type Referente = {
   gestisceAmministrazione: boolean;
 };
 
+export type PrezzoPersonalizzato = {
+  id: string;
+  materiale: string;
+  prezzo: number;
+  validoDal: string; // dd/mm/yyyy
+  validoAl?: string;
+};
+
 export type Cliente = {
   id: string;
   denominazione: string;
@@ -21,6 +29,14 @@ export type Cliente = {
   codiceFiscale?: string;
   indirizzo: string;
   referenti: Referente[];
+  listino?: PrezzoPersonalizzato[];
+};
+
+export type PrezzoLavorazione = {
+  id: string;
+  descrizione: string;
+  prezzo?: number;
+  unita: string; // "a pezzo", "al kg", "forfait"
 };
 
 export type Fornitore = {
@@ -29,7 +45,9 @@ export type Fornitore = {
   partitaIva: string;
   indirizzo: string;
   referenti: Referente[];
+  lavorazioni?: PrezzoLavorazione[];
 };
+
 
 export type StatoCommessa =
   | "preventivo inviato"
