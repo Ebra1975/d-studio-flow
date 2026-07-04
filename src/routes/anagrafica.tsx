@@ -399,10 +399,13 @@ function FornitoreDetail({
             </ul>
           )}
         </section>
+
+        <LavorazioniSection fornitore={fornitore} />
       </div>
     </aside>
   );
 }
+
 
 function Field({
   label,
