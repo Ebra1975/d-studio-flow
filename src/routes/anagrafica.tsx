@@ -268,7 +268,10 @@ function ClienteDetail({ cliente, onClose }: { cliente: Cliente; onClose: () => 
             )}
           </section>
         )}
+
+        <ListinoSection cliente={cliente} />
       </div>
+
     </aside>
   );
 }
