@@ -2,9 +2,28 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell } from "@/components/page-shell";
 import { Badge } from "@/components/status-badge";
-import { clienti, fornitori, type Cliente, type Fornitore } from "@/lib/mock-data";
-import { Plus, Search, X, Check } from "lucide-react";
+import {
+  clienti,
+  fornitori,
+  formatEuro,
+  type Cliente,
+  type Fornitore,
+  type PrezzoPersonalizzato,
+  type PrezzoLavorazione,
+} from "@/lib/mock-data";
+import { Plus, Search, X, Check, Pencil, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 
 export const Route = createFileRoute("/anagrafica")({
   head: () => ({
