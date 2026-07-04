@@ -188,7 +188,16 @@ export const clienti: Cliente[] = [
         gestisceAmministrazione: false,
       },
     ],
+    listino: [
+      {
+        id: "pp-001",
+        materiale: "PLA Nero",
+        prezzo: 18.5,
+        validoDal: "01/01/2026",
+      },
+    ],
   },
+
   {
     id: "cli-002",
     denominazione: "Cliente di Prova SRL",
