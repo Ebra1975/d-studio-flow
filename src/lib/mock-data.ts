@@ -262,7 +262,28 @@ export const fornitori: Fornitore[] = [
     indirizzo: "Corso Francia 100, 10143 Torino (TO)",
     referenti: [],
   },
+  {
+    id: "for-003",
+    denominazione: "Carrozzeria Rossi",
+    partitaIva: "33445566778",
+    indirizzo: "Via Meccanici 5, 90100 Palermo (PA)",
+    referenti: [],
+    lavorazioni: [
+      {
+        id: "lav-001",
+        descrizione: "Verniciatura UV-resistant",
+        prezzo: 15.0,
+        unita: "a pezzo",
+      },
+      {
+        id: "lav-002",
+        descrizione: "Saldatura struttura metallica",
+        unita: "forfait",
+      },
+    ],
+  },
 ];
+
 
 // ============================================================
 // COMMESSE
