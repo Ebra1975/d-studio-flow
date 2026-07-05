@@ -264,14 +264,14 @@ function NuovoMaterialeForm({
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             required
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <Field label="Categoria">
           <select
             value={categoria}
             onChange={(e) => setCategoria(e.target.value as CategoriaMateriale)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           >
             <option value="primario">primario</option>
             <option value="secondario">secondario</option>
@@ -283,7 +283,7 @@ function NuovoMaterialeForm({
             <select
               value={tipoMateriale}
               onChange={(e) => setTipoMateriale(e.target.value as TipoMateriale)}
-              className="input-b3d"
+              className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
             >
               {TIPI_MATERIALE.map((t) => (
                 <option key={t} value={t}>
@@ -297,21 +297,21 @@ function NuovoMaterialeForm({
           <input
             value={marca}
             onChange={(e) => setMarca(e.target.value)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <Field label="Colore">
           <input
             value={colore}
             onChange={(e) => setColore(e.target.value)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <Field label="Unità di misura">
           <input
             value={unitaMisura}
             onChange={(e) => setUnitaMisura(e.target.value)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <Field label="Costo unitario (€)">
@@ -320,7 +320,7 @@ function NuovoMaterialeForm({
             step="0.01"
             value={costoUnitario}
             onChange={(e) => setCostoUnitario(e.target.value)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <Field label="Scorta minima">
@@ -329,7 +329,7 @@ function NuovoMaterialeForm({
             step="0.01"
             value={scortaMinima}
             onChange={(e) => setScortaMinima(e.target.value)}
-            className="input-b3d"
+            className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </Field>
         <div className="md:col-span-3">
@@ -338,7 +338,7 @@ function NuovoMaterialeForm({
               value={note}
               onChange={(e) => setNote(e.target.value)}
               rows={2}
-              className="input-b3d resize-none"
+              className="rounded-md border border-input bg-background px-2 py-1.5 text-xs shadow-sm focus:outline-none focus:ring-1 focus:ring-ring resize-none"
             />
           </Field>
         </div>
