@@ -15,7 +15,10 @@ import { Route as AnagraficaRouteImport } from './routes/anagrafica'
 import { Route as AmministrazioneRouteImport } from './routes/amministrazione'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommesseIndexRouteImport } from './routes/commesse.index'
+import { Route as MagazzinoIdRouteImport } from './routes/magazzino.$id'
 import { Route as CommesseIdRouteImport } from './routes/commesse.$id'
+import { Route as MagazzinoIdRouteImport } from './routes/magazzino.$id'
+
 
 const ProduzioneRoute = ProduzioneRouteImport.update({
   id: '/produzione',
@@ -47,6 +50,11 @@ const CommesseIndexRoute = CommesseIndexRouteImport.update({
   path: '/commesse/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MagazzinoIdRoute = MagazzinoIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MagazzinoRoute,
+} as any)
 const CommesseIdRoute = CommesseIdRouteImport.update({
   id: '/commesse/$id',
   path: '/commesse/$id',
@@ -57,18 +65,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
+  '/magazzino': typeof MagazzinoRouteWithChildren
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse/': typeof CommesseIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
+  '/magazzino': typeof MagazzinoRouteWithChildren
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse': typeof CommesseIndexRoute
 }
 export interface FileRoutesById {
@@ -76,9 +86,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
+  '/magazzino': typeof MagazzinoRouteWithChildren
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse/': typeof CommesseIndexRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +101,7 @@ export interface FileRouteTypes {
     | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +111,7 @@ export interface FileRouteTypes {
     | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse'
   id:
     | '__root__'
@@ -108,6 +121,7 @@ export interface FileRouteTypes {
     | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse/'
   fileRoutesById: FileRoutesById
 }
@@ -115,7 +129,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmministrazioneRoute: typeof AmministrazioneRoute
   AnagraficaRoute: typeof AnagraficaRoute
-  MagazzinoRoute: typeof MagazzinoRoute
+  MagazzinoRoute: typeof MagazzinoRouteWithChildren
   ProduzioneRoute: typeof ProduzioneRoute
   CommesseIdRoute: typeof CommesseIdRoute
   CommesseIndexRoute: typeof CommesseIndexRoute
@@ -165,6 +179,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommesseIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/magazzino/$id': {
+      id: '/magazzino/$id'
+      path: '/$id'
+      fullPath: '/magazzino/$id'
+      preLoaderRoute: typeof MagazzinoIdRouteImport
+      parentRoute: typeof MagazzinoRoute
+    }
     '/commesse/$id': {
       id: '/commesse/$id'
       path: '/commesse/$id'
@@ -175,11 +196,23 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface MagazzinoRouteChildren {
+  MagazzinoIdRoute: typeof MagazzinoIdRoute
+}
+
+const MagazzinoRouteChildren: MagazzinoRouteChildren = {
+  MagazzinoIdRoute: MagazzinoIdRoute,
+}
+
+const MagazzinoRouteWithChildren = MagazzinoRoute._addFileChildren(
+  MagazzinoRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmministrazioneRoute: AmministrazioneRoute,
   AnagraficaRoute: AnagraficaRoute,
-  MagazzinoRoute: MagazzinoRoute,
+  MagazzinoRoute: MagazzinoRouteWithChildren,
   ProduzioneRoute: ProduzioneRoute,
   CommesseIdRoute: CommesseIdRoute,
   CommesseIndexRoute: CommesseIndexRoute,
