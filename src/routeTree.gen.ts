@@ -58,12 +58,6 @@ const CommesseIdRoute = CommesseIdRouteImport.update({
   path: '/commesse/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MagazzinoIdRoute = MagazzinoIdRouteImport.update({
-  id: '/magazzino/$id',
-  path: '/magazzino/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
