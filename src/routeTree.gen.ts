@@ -17,8 +17,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommesseIndexRouteImport } from './routes/commesse.index'
 import { Route as MagazzinoIdRouteImport } from './routes/magazzino.$id'
 import { Route as CommesseIdRouteImport } from './routes/commesse.$id'
-import { Route as MagazzinoIdRouteImport } from './routes/magazzino.$id'
-
 
 const ProduzioneRoute = ProduzioneRouteImport.update({
   id: '/produzione',
@@ -60,6 +58,12 @@ const CommesseIdRoute = CommesseIdRouteImport.update({
   path: '/commesse/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MagazzinoIdRoute = MagazzinoIdRouteImport.update({
+  id: '/magazzino/$id',
+  path: '/magazzino/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
