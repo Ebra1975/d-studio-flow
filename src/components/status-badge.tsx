@@ -25,6 +25,20 @@ const materialeStyles: Record<CategoriaMateriale, string> = {
   attrezzatura: "bg-purple-50 text-purple-700 border-purple-200",
 };
 
+const tipoMaterialeStyles: Record<string, string> = {
+  filamento: "bg-cyan-50 text-cyan-700 border-cyan-200",
+  resina: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",
+  polvere: "bg-yellow-50 text-yellow-800 border-yellow-200",
+  altro: "bg-slate-100 text-slate-700 border-slate-200",
+};
+
+const movimentoStyles: Record<string, string> = {
+  carico: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  scarico: "bg-orange-50 text-orange-800 border-orange-200",
+  rettifica: "bg-slate-100 text-slate-700 border-slate-200",
+};
+
+
 const fatturaStyles: Record<string, string> = {
   "in attesa": "bg-amber-50 text-amber-800 border-amber-200",
   scaduta: "bg-red-50 text-red-700 border-red-300",
@@ -53,11 +67,14 @@ const allStyles: Record<string, string> = {
   ...commessaStyles,
   ...clienteStyles,
   ...materialeStyles,
+  ...tipoMaterialeStyles,
+  ...movimentoStyles,
   ...fatturaStyles,
   ...jobStyles,
   ...stampanteStyles,
   ...firmaStyles,
 };
+
 
 export function Badge({
   children,

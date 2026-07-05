@@ -195,9 +195,10 @@ function Dashboard() {
                 <div>
                   <div className="font-medium">{m.nome}</div>
                   <div className="text-xs text-muted-foreground">
-                    {m.scortaAttuale} {m.unitaMisura} · minima {m.scortaMinima}{" "}
+                    {m.giacenzaAttuale} {m.unitaMisura} · minima {m.scortaMinima}{" "}
                     {m.unitaMisura}
                   </div>
+
                 </div>
                 <Badge variant="scaduta">sotto scorta</Badge>
               </li>

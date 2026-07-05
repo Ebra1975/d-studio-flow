@@ -10,21 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProduzioneRouteImport } from './routes/produzione'
-import { Route as MagazzinoRouteImport } from './routes/magazzino'
 import { Route as AnagraficaRouteImport } from './routes/anagrafica'
 import { Route as AmministrazioneRouteImport } from './routes/amministrazione'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MagazzinoIndexRouteImport } from './routes/magazzino.index'
 import { Route as CommesseIndexRouteImport } from './routes/commesse.index'
+import { Route as MagazzinoIdRouteImport } from './routes/magazzino.$id'
 import { Route as CommesseIdRouteImport } from './routes/commesse.$id'
 
 const ProduzioneRoute = ProduzioneRouteImport.update({
   id: '/produzione',
   path: '/produzione',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MagazzinoRoute = MagazzinoRouteImport.update({
-  id: '/magazzino',
-  path: '/magazzino',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnagraficaRoute = AnagraficaRouteImport.update({
@@ -42,9 +38,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MagazzinoIndexRoute = MagazzinoIndexRouteImport.update({
+  id: '/magazzino/',
+  path: '/magazzino/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommesseIndexRoute = CommesseIndexRouteImport.update({
   id: '/commesse/',
   path: '/commesse/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagazzinoIdRoute = MagazzinoIdRouteImport.update({
+  id: '/magazzino/$id',
+  path: '/magazzino/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommesseIdRoute = CommesseIdRouteImport.update({
@@ -57,29 +63,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse/': typeof CommesseIndexRoute
+  '/magazzino/': typeof MagazzinoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse': typeof CommesseIndexRoute
+  '/magazzino': typeof MagazzinoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/amministrazione': typeof AmministrazioneRoute
   '/anagrafica': typeof AnagraficaRoute
-  '/magazzino': typeof MagazzinoRoute
   '/produzione': typeof ProduzioneRoute
   '/commesse/$id': typeof CommesseIdRoute
+  '/magazzino/$id': typeof MagazzinoIdRoute
   '/commesse/': typeof CommesseIndexRoute
+  '/magazzino/': typeof MagazzinoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +96,42 @@ export interface FileRouteTypes {
     | '/'
     | '/amministrazione'
     | '/anagrafica'
-    | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse/'
+    | '/magazzino/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/amministrazione'
     | '/anagrafica'
-    | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse'
+    | '/magazzino'
   id:
     | '__root__'
     | '/'
     | '/amministrazione'
     | '/anagrafica'
-    | '/magazzino'
     | '/produzione'
     | '/commesse/$id'
+    | '/magazzino/$id'
     | '/commesse/'
+    | '/magazzino/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmministrazioneRoute: typeof AmministrazioneRoute
   AnagraficaRoute: typeof AnagraficaRoute
-  MagazzinoRoute: typeof MagazzinoRoute
   ProduzioneRoute: typeof ProduzioneRoute
   CommesseIdRoute: typeof CommesseIdRoute
+  MagazzinoIdRoute: typeof MagazzinoIdRoute
   CommesseIndexRoute: typeof CommesseIndexRoute
+  MagazzinoIndexRoute: typeof MagazzinoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -128,13 +141,6 @@ declare module '@tanstack/react-router' {
       path: '/produzione'
       fullPath: '/produzione'
       preLoaderRoute: typeof ProduzioneRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/magazzino': {
-      id: '/magazzino'
-      path: '/magazzino'
-      fullPath: '/magazzino'
-      preLoaderRoute: typeof MagazzinoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anagrafica': {
@@ -158,11 +164,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/magazzino/': {
+      id: '/magazzino/'
+      path: '/magazzino'
+      fullPath: '/magazzino/'
+      preLoaderRoute: typeof MagazzinoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/commesse/': {
       id: '/commesse/'
       path: '/commesse'
       fullPath: '/commesse/'
       preLoaderRoute: typeof CommesseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magazzino/$id': {
+      id: '/magazzino/$id'
+      path: '/magazzino/$id'
+      fullPath: '/magazzino/$id'
+      preLoaderRoute: typeof MagazzinoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/commesse/$id': {
@@ -179,10 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmministrazioneRoute: AmministrazioneRoute,
   AnagraficaRoute: AnagraficaRoute,
-  MagazzinoRoute: MagazzinoRoute,
   ProduzioneRoute: ProduzioneRoute,
   CommesseIdRoute: CommesseIdRoute,
+  MagazzinoIdRoute: MagazzinoIdRoute,
   CommesseIndexRoute: CommesseIndexRoute,
+  MagazzinoIndexRoute: MagazzinoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
