@@ -12,7 +12,7 @@ import {
 import { Plus, AlertTriangle, Search, X, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/magazzino")({
+export const Route = createFileRoute("/magazzino/")({
   head: () => ({
     meta: [
       { title: "Magazzino — Bottega 3D" },
