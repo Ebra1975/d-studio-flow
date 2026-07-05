@@ -112,20 +112,47 @@ export type Commessa = {
 };
 
 export type CategoriaMateriale = "primario" | "secondario" | "attrezzatura";
+export type TipoMateriale = "filamento" | "resina" | "polvere" | "altro";
 
 export type Materiale = {
   id: string;
   nome: string;
   categoria: CategoriaMateriale;
-  brand?: string;
-  unitaAcquisto?: string;
-  unitaConsumo?: string;
-  prezzoStandard?: number;
-  scortaAttuale: number | null;
-  scortaMinima: number | null;
+  tipoMateriale: TipoMateriale | null;
+  marca: string;
+  colore: string;
   unitaMisura: string;
-  specifiche: Record<string, string>;
+  costoUnitario: number;
+  scortaMinima: number | null;
+  giacenzaAttuale: number | null;
+  note?: string;
 };
+
+export type Lotto = {
+  id: string;
+  materialeId: string;
+  numeroLotto: string;
+  fornitore: string;
+  quantitaIniziale: number;
+  giacenzaAttuale: number;
+  costoLotto: number;
+  dataAcquisto: string; // dd/mm/yyyy
+  dataScadenza?: string;
+};
+
+export type TipoMovimento = "carico" | "scarico" | "rettifica";
+
+export type Movimento = {
+  id: string;
+  materialeId: string;
+  tipo: TipoMovimento;
+  quantita: number; // sempre positivo; per rettifica può essere negativo
+  lottoId: string | null;
+  commessaId: string | null;
+  data: string; // dd/mm/yyyy
+  note?: string;
+};
+
 
 export type Stampante = {
   id: string;
