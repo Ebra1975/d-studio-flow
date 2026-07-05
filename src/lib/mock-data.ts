@@ -920,10 +920,11 @@ export const kpiCommesseAttive = () =>
 export const kpiMaterialiSottoScorta = () =>
   materiali.filter(
     (m) =>
-      m.scortaAttuale !== null &&
+      m.giacenzaAttuale !== null &&
       m.scortaMinima !== null &&
-      m.scortaAttuale < m.scortaMinima,
+      m.giacenzaAttuale < m.scortaMinima,
   );
+
 
 export const kpiFattureScadute = () =>
   fatture.filter((f) => f.stato === "scaduta");
