@@ -67,11 +67,14 @@ const allStyles: Record<string, string> = {
   ...commessaStyles,
   ...clienteStyles,
   ...materialeStyles,
+  ...tipoMaterialeStyles,
+  ...movimentoStyles,
   ...fatturaStyles,
   ...jobStyles,
   ...stampanteStyles,
   ...firmaStyles,
 };
+
 
 export function Badge({
   children,
